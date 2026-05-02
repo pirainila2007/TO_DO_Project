@@ -11,27 +11,26 @@
     <h1>TO DO LIST</h1>
 
     <input type="text" id="taskInput" placeholder="Enter Your Task Here">
-        <button id="addBtn">ADD</button>
-        <div id="todolist"></div>
+    <button id="addBtn">ADD</button>
+  </div>
 
-    </div>
-    <div class="filter-section">
-      <button id="filterTask('All')">All</button>
-      <button id="filterTask('Pending')">Pending</button>
-      <button id="filterTask('Complete')">Complete</button>
-    </div>
+  <div class="filter-section">
+    <button onclick="filterTask('All')">All</button>
+    <button onclick="filterTask('Pending')">Pending</button>
+    <button onclick="filterTask('Complete')">Complete</button>
+  </div>
     
-    <div class="tasks-container">
-      <div class="tasks-header">
-        <span>Your Tasks</span>
-        <span id="taskCount">0 Tasks</span>
-      </div>
-      <ul id="taskList" class="task-list">
-        <li class="empty-state">No tasks yet</li>
-      </ul>
+  <div class="tasks-container">
+    <div class="tasks-header">
+      <span>Your Tasks</span>
+      <span id="taskCount">0 Tasks</span>
     </div>
+    <ul id="taskList" class="task-list">
+      <li class="empty-state">No tasks yet</li>
+    </ul>
   </div> 
 
   <script src="script.js"></script>
 </body>
 </html>
+

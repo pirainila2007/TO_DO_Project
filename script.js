@@ -1,32 +1,63 @@
-let button = document.getElementById('addBtn');
-let todolist = document.getElementById('todolist');
-let input = document.getElementById('taskInput');
+const taskInput = document.getElementById("taskInput");
+const addBtn = document.getElementById("addBtn");
+const taskList = document.getElementById("taskList");
+const taskCount = document.getElementById("taskCount");
 
-let todos = [];
+let tasks = [];
 
-button.addEventListener('click', () => {
-  if (input.value.trim() !== "") {
-    todos.push(input.value);
-    addTodo(input.value);
-    input.value = "";
-  }
-});
+addBtn.addEventListener("click", addTask);
 
-function addTodo(todo) {
-  let para = document.createElement('p');
-  para.innerText = todo;
-  para.classList.add('task-item');
-  todolist.appendChild(para);
+function addTask() {
+  const taskText = taskInput.value.trim();
+  if (taskText === "") return;
 
- 
-  para.addEventListener('click', () => {
-    para.classList.toggle('complete');
-  });
-
-
-  para.addEventListener('contextmenu', (e) => {
-    e.preventDefault();
-    todolist.removeChild(para);
-  });
+  const task = { text: taskText, status: "Pending" };
+  tasks.push(task);
+  taskInput.value = "";
+  renderTasks();
 }
+
+function renderTasks(filter = "All") {
+  taskList.innerHTML = "";
+  let filteredTasks = tasks;
+
+  if (filter !== "All") {
+    filteredTasks = tasks.filter(t => t.status === filter);
+  }
+
+  if (filteredTasks.length === 0) {
+    taskList.innerHTML = `<li class="empty-state">No tasks yet</li>`;
+  } else {
+    filteredTasks.forEach((task, index) => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <span class="${task.status === "Complete" ? "completed" : ""}">
+          ${task.text}
+        </span>
+        <button onclick="toggleStatus(${index})">
+          ${task.status === "Pending" ? "✔" : "↩"}
+        </button>
+        <button onclick="deleteTask(${index})">🗑</button>
+      `;
+      taskList.appendChild(li);
+    });
+  }
+
+  taskCount.textContent = `${filteredTasks.length} Tasks`;
+}
+
+function toggleStatus(index) {
+  tasks[index].status = tasks[index].status === "Pending" ? "Complete" : "Pending";
+  renderTasks();
+}
+
+function deleteTask(index) {
+  tasks.splice(index, 1);
+  renderTasks();
+}
+
+function filterTask(status) {
+  renderTasks(status);
+}
+
 
