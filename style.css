@@ -3,62 +3,96 @@ body {
     background: linear-gradient(135deg, #16a7ea, #121434);
     height: 100vh;
     margin: 0;
-}
-
-
-.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .wrapper {
+    height: auto;
     width: 400px;
-    margin: 80px auto;
-    padding: 25px;
-
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-
-    border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-    color: #fff;
-}
-
-.input {
-    width: 70%;
+    background-color: #1f2029;
+    border-radius: 10px;
+    padding: 30px;
+  }
+  
+  .wrapper h1 {
+    text-align: center;
+    color: #ffeba7;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
+  
+  input {
+    display: block;
+    border-radius: 5px;
+    border: 2px solid black;
+    height: 2.5em;
+    width: 100%;
     padding: 10px;
-    border-radius: 8px;
-    border: none;
+    margin: 20px auto;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    background-color: transparent;
+    color: #fff;
+  }
+  
+  input:focus {
     outline: none;
-
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
-}
-
-.button {
-    padding: 10px 12px;
+    border: 2px solid #16a7ea;
+  }
+  
+  /* Buttons */
+  button {
     border: none;
-    border-radius: 8px;
-
-    background: rgba(255, 255, 255, 0.25);
-    color: #fff;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin: 5px;
     cursor: pointer;
-
-    transition: 0.3s ease;
-}
-
-.button:hover {
-    background: rgba(255, 255, 255, 0.4);
-}
-
-li {
+    background-color: #16a7ea;
+    color: #fff;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #0d6efd;
+  }
+  
+  .tasks-container {
+    margin-top: 20px;
+  }
+  
+  .tasks-header {
     display: flex;
     justify-content: space-between;
-    margin: 12px 0;
-    padding: 8px 10px;
-
-    border-radius: 8px;
-
-}
-.completed {
+    color: #ffeba7;
+    margin-bottom: 10px;
+  }
+  
+  .task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .task-list li {
+    background-color: #2a2b38;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .task-list li.complete {
     text-decoration: line-through;
-    color: #d3d3d3;
-}
+    opacity: 0.6;
+  }
+  
+  .empty-state {
+    text-align: center;
+    color: #aaa;
+  }
+  
