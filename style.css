@@ -1,66 +1,285 @@
+
 body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #74ebd5, #9face6);
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, #8b5cf6, transparent 35%),
+    radial-gradient(circle at bottom right, #06b6d4, transparent 35%),
+    linear-gradient(135deg, #0f172a, #1e1b4b);
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 100vh;
-  margin: 0;
+  padding: 45px 15px;
+  color: #fff;
+}
+
+.wrapper,
+.container {
+  width: 200%;
+  max-width: 560px;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(22px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
 }
 
 .wrapper {
-  background: #fff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-  width: 350px;
+  padding: 100px;
   text-align: center;
 }
 
-h1 {
-  color: #333;
+.wrapper h1 {
+  margin-bottom: 28px;
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  background: linear-gradient(90deg, #fff, #c4b5fd, #67e8f9);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-input {
+#taskInput {
   width: 70%;
-  padding: 10px;
-  border: 2px solid #74ebd5;
-  border-radius: 6px;
+  padding: 15px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  outline: none;
+  border-radius: 16px;
+  font-size: 15px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
 }
 
-button {
-  padding: 10px 15px;
-  margin: 5px;
+#taskInput::placeholder {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+#taskInput:focus {
+  border-color: #67e8f9;
+  box-shadow: 0 0 0 4px rgba(103, 232, 249, 0.15);
+}
+
+#addBtn {
+  padding: 15px 24px;
   border: none;
-  border-radius: 6px;
-  background: #74ebd5;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #facc15, #fb923c);
+  color: #111827;
+  font-weight: 800;
+  cursor: pointer;
+  margin-left: 8px;
+  transition: 0.3s ease;
+  box-shadow: 0 12px 25px rgba(251, 146, 60, 0.35);
+}
+
+#addBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 35px rgba(251, 146, 60, 0.5);
+}
+
+.filter-section {
+  margin: 28px 0;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filter-section button {
+  padding: 11px 24px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.13);
   color: #fff;
   cursor: pointer;
-  transition: 0.3s;
+  font-weight: 700;
+  transition: 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-button:hover {
-  background: #9face6;
+.filter-section button:hover {
+  background: #fff;
+  color: #4c1d95;
+  transform: translateY(-3px);
 }
 
-.task-list {
-  list-style: none;
-  padding: 0;
+.container {
+  padding: 26px;
 }
 
-.task-list li {
-  background: #f4f4f4;
-  margin: 8px 0;
-  padding: 10px;
-  border-radius: 6px;
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 18px;
+  font-weight: 800;
+  font-size: 18px;
+  color: #fff;
 }
 
-.completed {
+#taskCount {
+  background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+  color: #fff;
+  padding: 7px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  box-shadow: 0 8px 20px rgba(6, 182, 212, 0.25);
+}
+
+.list {
+  list-style: none;
+}
+
+.list li {
+  background: rgba(255, 255, 255, 0.9);
+  margin-bottom: 14px;
+  padding: 16px;
+  border-radius: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  border-left: 5px solid #8b5cf6;
+  color: #111827;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
+  transition: 0.3s ease;
+}
+
+.list li:hover {
+  transform: translateY(-3px) scale(1.01);
+}
+
+.list li.empty {
+  justify-content: center;
+  color: #64748b;
+  border-left: none;
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: none;
+}
+
+.list li.completed {
+  opacity: 0.65;
+  border-left-color: #22c55e;
+}
+
+.list li.completed span {
   text-decoration: line-through;
-  color: gray;
 }
 
-  
+.list li span {
+  flex: 1;
+  word-break: break-word;
+  font-weight: 600;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.complete-btn,
+.delete-btn {
+  position: relative;
+  overflow: hidden;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #fff;
+  white-space: nowrap;
+  transition: all 0.35s ease;
+  backdrop-filter: blur(10px);
+}
+
+.complete-btn::before,
+.delete-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.35),
+    transparent
+  );
+  transition: 0.6s;
+}
+
+.complete-btn:hover::before,
+.delete-btn:hover::before {
+  left: 120%;
+}
+
+.complete-btn {
+  background: linear-gradient(135deg, #22c55e, #15803d);
+  box-shadow:
+    0 8px 20px rgba(34, 197, 94, 0.35),
+    inset 0 1px 1px rgba(255,255,255,0.3);
+}
+
+.complete-btn:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow:
+    0 14px 28px rgba(34, 197, 94, 0.5),
+    inset 0 1px 2px rgba(255,255,255,0.4);
+}
+
+.complete-btn:active {
+  transform: scale(0.96);
+}
+
+.delete-btn {
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
+  box-shadow:
+    0 8px 20px rgba(239, 68, 68, 0.35),
+    inset 0 1px 1px rgba(255,255,255,0.3);
+}
+
+.delete-btn:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow:
+    0 14px 28px rgba(239, 68, 68, 0.5),
+    inset 0 1px 2px rgba(255,255,255,0.4);
+}
+
+.delete-btn:active {
+  transform: scale(0.96);
+}
+@media (max-width: 500px) {
+  body {
+    padding: 25px 12px;
+  }
+
+  .wrapper,
+  .container {
+    padding: 24px;
+  }
+
+  .wrapper h1 {
+    font-size: 28px;
+  }
+
+  #taskInput {
+    width: 100%;
+    margin-bottom: 12px;
+  }
+
+  #addBtn {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .list li {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .action-buttons {
+    justify-content: flex-end;
+  }
+}

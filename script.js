@@ -26,7 +26,7 @@ function renderTasks(filter = "All") {
   }
 
   if (filteredTasks.length === 0) {
-    taskList.innerHTML = `<li class="empty-state">No tasks yet</li>`;
+    taskList.innerHTML = `<li class="empty">No tasks yet</li>`;
   } else {
     filteredTasks.forEach((task, index) => {
       const li = document.createElement("li");
